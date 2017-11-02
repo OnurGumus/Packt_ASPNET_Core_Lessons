@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Lesson11.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace Lesson11
 {
@@ -26,6 +28,12 @@ namespace Lesson11
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.Configure<AuthorizationOptions>(options =>
+            {
+                options.AddPolicy("demouser", policy => policy.RequireUserName("demouser@microsoft.com"));
+            });
+
 
             services.AddMvc();
         }

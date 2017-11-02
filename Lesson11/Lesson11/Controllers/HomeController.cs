@@ -15,7 +15,8 @@ namespace Lesson11.Controllers
         {
             return View();
         }
-        [Authorize]
+        //[Authorize(Roles ="Admin")]
+     //   [Authorize(Policy = "demouser")]
 
         public IActionResult About()
         {

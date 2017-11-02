@@ -12,7 +12,14 @@ namespace Lesson11.Models
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :
 base(options)
         { }
-      
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder
+                .Entity<ApplicationUser>(b => 
+                    b.HasIndex(nameof(ApplicationUser.PhoneNumber)));
+        }
+
 
     }
 }
